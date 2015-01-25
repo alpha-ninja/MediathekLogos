@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#this file is in the public domain
+cd ./svg
+
+test="x$(command -v "convert")x"
+if [[ $test = "xx" ]]; then
+	echo "imagemagick convert missing, aborting."
+else
+	echo "imagemagick convert installed"
+	for filename in $(find . -regex ".*.svg"); do
+		convert -background none $filename ../png/$filename.png
+		echo "wrote ${filename}.png"
+	done
+fi
