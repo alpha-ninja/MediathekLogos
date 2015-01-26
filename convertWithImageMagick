@@ -5,11 +5,12 @@ cd ./svg
 
 test="x$(command -v "convert")x"
 if [[ $test = "xx" ]]; then
-	echo "imagemagick convert missing, aborting."
+	echo "imagemagick convert utility missing, aborting."
 else
-	echo "imagemagick convert installed"
+	echo "imagemagick convert is installed. continuing"
 	for filename in $(find . -regex ".*.svg"); do
-		convert -background none $filename ../png/$filename.png
-		echo "wrote ${filename}.png"
+		newfilename=`echo $filename | cut -c 3- | awk -F . '{print $1}'`
+		convert -background none $filename ../png/$newfilename.png
+		echo "wrote ${newfilename}.png"
 	done
 fi
