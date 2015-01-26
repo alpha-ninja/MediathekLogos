@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #this file is in the public domain
+cd "$( dirname "${BASH_SOURCE[0]}" )"
 cd ./svg
 
 test="x$(command -v "convert")x"
