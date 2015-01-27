@@ -11,7 +11,9 @@ else
 	echo "imagemagick convert is installed. continuing"
 	for filename in $(find . -regex ".*.svg"); do
 		newfilename=`echo $filename | cut -c 3- | awk -F . '{print $1}'`
-		convert -background none $filename ../png/$newfilename.png
+		newfilename=${filename%????}
+		echo ${newfilename:2}
+		convert -background "#FFFFFF66" $filename ../png/$newfilename.png
 		echo "wrote ${newfilename}.png"
 	done
 fi
